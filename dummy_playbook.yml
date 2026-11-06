@@ -1,69 +1,20 @@
 ---
-- name: Process Linux Baseline Server Deployment Request
+- name: Process Inputs from AnsibleForms
   hosts: localhost
   gather_facts: false
-
   vars:
-    # Set fallback defaults matching the form defaults
-    deployments_enabled: "{{ deployments_enabled | default(true) }}"
-    customer_business_group: "{{ customer_business_group | default('Unspecified') }}"
-    email_addresses: "{{ email_addresses | default([]) }}"
-    io_intake_number: "{{ io_intake_number | default('') }}"
-    bypass_change: "{{ bypass_change | default(true) }}"
-    bypass_change_justification: "{{ bypass_change_justification | default('None provided') }}"
-    vcenter: "{{ vcenter | default('vcenter01.corp.local') }}"
-    cluster: "{{ cluster | default('Cluster-Prod-01') }}"
-    vm_folder: "{{ vm_folder | default('Workloads/Linux') }}"
-    cpu: "{{ cpu | default(2) | int }}"
-    memory_gb: "{{ memory_gb | default(4) | int }}"
-    additional_disks: "{{ additional_disks | default([]) }}"
-    vm_hostname: "{{ vm_hostname | default('localhost') }}"
-    server_domain: "{{ server_domain | default('corp.internal') }}"
-    linux_os: "{{ linux_os | default('RHEL 9.4') }}"
-    rhsat_org: "{{ rhsat_org | default('') }}"
-    rhsat_location: "{{ rhsat_location | default('') }}"
-    network: "{{ network | default('') }}"
-    ip_address: "{{ ip_address | default('') }}"
-    application_owner: "{{ application_owner | default('') }}"
-    environment: "{{ environment | default('Dev') }}"
-    os_disk_size: "{{ os_disk_size | default(80) | int }}"
-    retain_on_failure: "{{ retain_on_failure | default(false) }}"
+    target_hostname: "default-host"
+    environment_type: "dev"
+    admin_email: "admin@example.com"
 
   tasks:
-    - name: Fail early if deployment is disabled
-      ansible.builtin.fail:
-        msg: "Deployment aborted because 'Deployments Enabled' is unchecked."
-      when: not deployments_enabled
-
-    - name: Display received form parameters
+    - name: Display received variables
       ansible.builtin.debug:
         msg:
-          - "Target Hostname: {{ vm_hostname }}.{{ server_domain }}"
-          - "vCenter: {{ vcenter }} | Cluster: {{ cluster }} | Folder: {{ vm_folder }}"
-          - "Compute: {{ cpu }} vCPUs | {{ memory_gb }} GB RAM | OS Disk: {{ os_disk_size }} GB"
-          - "Network: {{ network }} (IP: {{ ip_address }})"
-          - "Satellite Config: Org '{{ rhsat_org }}', Loc '{{ rhsat_location }}', OS '{{ linux_os }}'"
-          - "Owner: {{ application_owner }} | Env: {{ environment }}"
-          - "Notifications: {{ email_addresses }}"
+          - "Target Hostname: {{ target_hostname }}"
+          - "Environment:     {{ environment_type }}"
+          - "Admin Email:     {{ admin_email }}"
 
-    - name: Process additional disks from the form table
+    - name: Perform deployment task
       ansible.builtin.debug:
-        msg: "Configuring {{ item.disk_name }} with size {{ item.disk_size_gb }} GB"
-      loop: "{{ additional_disks }}"
-      when: additional_disks | length > 0
-
-    - name: Simulate change management check
-      ansible.builtin.debug:
-        msg: "Change creation bypassed. Justification: {{ bypass_change_justification }}"
-      when: bypass_change | bool
-
-    # Replace this block with your actual provisioning task 
-    # (e.g., vmware.vmware_rest, community.vmware, redhat.satellite, or awx.awx.job_launch)
-    - name: Mock provisioning virtual machine
-      ansible.builtin.debug:
-        msg: "Triggering build for {{ vm_hostname }}.{{ server_domain }} on {{ vcenter }}..."
-
-    - name: Send status notification email
-      ansible.builtin.debug:
-        msg: "Sending deployment confirmation to: {{ email_addresses | join(', ') }}"
-      when: email_addresses | length > 0
+        msg: "Deploying {{ target_hostname }} to {{ environment_type }} tier..."

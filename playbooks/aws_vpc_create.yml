@@ -33,7 +33,7 @@
         vpc_id: "{{ vpc_result.vpc.id }}"
         cidr: "{{ form_public_subnet_cidr }}"
         region: "{{ target_region }}"
-        map_public_ip_on_launch: true
+        map_public: true
         tags:
           Name: "{{ form_vpc_name }}-public-subnet"
           Environment: "{{ form_environment_tag }}"

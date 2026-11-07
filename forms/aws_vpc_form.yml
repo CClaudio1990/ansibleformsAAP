@@ -4,6 +4,8 @@ description: Provision a standardized AWS Virtual Private Cloud (VPC) via AAP 2.
 type: ansible
 #template: "AWS - Create VPC Network"
 playbook: aws_vpc_create.yml
+roles: []
+categories: []
 
 fields:
   - name: form_vpc_name              # Updated naming convention

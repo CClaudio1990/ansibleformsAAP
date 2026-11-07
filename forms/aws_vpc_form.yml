@@ -1,7 +1,7 @@
 ---
 name: Create AWS VPC
 description: Provision a standardized AWS Virtual Private Cloud (VPC) via AAP 2.7
-type: aap
+type: ansible
 template: "AWS - Create VPC Network"
 playbook: aws_vpc_create.yml
 

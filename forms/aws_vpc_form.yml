@@ -12,36 +12,36 @@ fields:
     placeholder: "e.g., prod-vpc-useast1"
     required: true
 
-  - name: form_region                # Updated naming convention
-    type: enum
-    label: AWS Region
-    values:
-      - "us-east-1"
-      - "us-west-2"
-      - "eu-west-1"
-    default: "us-east-1"
-    required: true
+#  - name: form_region                # Updated naming convention
+#    type: enum
+#    label: AWS Region
+#    values:
+      # - "us-east-1"
+  #     - "us-west-2"
+  #     - "eu-west-1"
+  #   default: "us-east-1"
+  #   required: true
 
-  - name: form_vpc_cidr              # Updated naming convention
-    type: text
-    label: VPC IPv4 CIDR Block
-    placeholder: "e.g., 10.0.0.0/16"
-    default: "10.0.0.0/16"
-    required: true
+  # - name: form_vpc_cidr              # Updated naming convention
+  #   type: text
+  #   label: VPC IPv4 CIDR Block
+  #   placeholder: "e.g., 10.0.0.0/16"
+  #   default: "10.0.0.0/16"
+  #   required: true
 
-  - name: form_public_subnet_cidr     # Updated naming convention
-    type: text
-    label: Public Subnet CIDR Block
-    placeholder: "e.g., 10.0.1.0/24"
-    default: "10.0.1.0/24"
-    required: true
+  # - name: form_public_subnet_cidr     # Updated naming convention
+  #   type: text
+  #   label: Public Subnet CIDR Block
+  #   placeholder: "e.g., 10.0.1.0/24"
+  #   default: "10.0.1.0/24"
+  #   required: true
 
-  - name: form_environment_tag        # Updated naming convention
-    type: enum
-    label: Environment Tier
-    values:
-      - "Development"
-      - "Staging"
-      - "Production"
-    default: "Development"
-    required: true
+  # - name: form_environment_tag        # Updated naming convention
+  #   type: enum
+  #   label: Environment Tier
+  #   values:
+  #     - "Development"
+  #     - "Staging"
+  #     - "Production"
+  #   default: "Development"
+  #   required: true

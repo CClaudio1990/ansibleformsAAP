@@ -1,0 +1,23 @@
+name: Personal Info
+type: ansible
+playbook: dummy.yaml
+description: ""
+roles: []
+categories: []
+tileClass: has-background-info-light
+fields:
+  - name: form_first_name
+    type: text
+    label: First Name
+  - name: form_last_name
+    type: text
+    label: Last Name
+  - name: form_city
+    type: text
+    label: City
+  - name: form_state
+    type: text
+    label: State
+  - name: form_email
+    type: text
+    label: Email

@@ -1,0 +1,21 @@
+---
+name: Create AWS EC2 Instance
+description: Provision a new virtual machine in AWS via AAP
+type: tower                          # Tells AnsibleForms to call AAP via API
+job_template_id: 42                  # The ID of your AWS Job Template inside AAP
+
+fields:
+  - name: instance_name
+    type: text
+    label: Instance Name
+    required: true
+
+  - name: instance_type
+    type: dropdown
+    label: Instance Size
+    choices:
+      - "t3.micro"
+      - "t3.small"
+      - "m5.large"
+    default: "t3.micro"
+    required: true

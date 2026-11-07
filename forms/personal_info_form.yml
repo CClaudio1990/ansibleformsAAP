@@ -1,6 +1,6 @@
 name: Personal Info
 type: ansible
-playbook: dummy.yaml
+playbook: personal_info.yaml
 description: ""
 roles: []
 categories: []

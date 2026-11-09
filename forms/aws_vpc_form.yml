@@ -68,10 +68,6 @@
       label: Select VPC ID
       required: true
       refresh: true
-      conditions:
-        - field: form_region
-          operator: "!="
-          value: Select
       expression: >
         fn.fnRestBasic(
           'GET',
@@ -90,10 +86,6 @@
       label: Target Subnet ID
       required: true
       refresh: true
-      conditions:
-        - field: form_vpc_id
-          operator: "!="
-          value: ''
       # Triggers an AWS DescribeSubnets query filtered by the chosen VPC ID and Region:
       expression: >
         fn.fnRestBasic(
@@ -124,10 +116,6 @@
       label: SSH Key Pair Name
       required: true
       refresh: true
-      conditions:
-        - field: form_region
-          operator: "!="
-          value: ''
       # Queries EC2 key pairs available in the selected Region:
       expression: >
         fn.fnRestBasic(

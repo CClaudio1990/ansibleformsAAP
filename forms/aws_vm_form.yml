@@ -10,7 +10,6 @@ fields:
     label: Instance Name
     placeholder: e.g., app-server-01
     required: true
-
   - name: form_region
     type: enum
     label: AWS Region
@@ -20,19 +19,16 @@ fields:
       - eu-west-1
     default: us-east-1
     required: true
-
   - name: form_vpc_id
     type: text
     label: Target VPC ID
     placeholder: e.g., vpc-0123456789abcdef0
     required: true
-
   - name: form_subnet_id
     type: text
     label: Target Subnet ID
     placeholder: e.g., subnet-0123456789abcdef0
     required: true
-
   - name: form_instance_type
     type: enum
     label: Instance Type
@@ -44,33 +40,28 @@ fields:
       - m5.large
     default: t3.micro
     required: true
-
   - name: form_ami_id
     type: text
     label: AMI ID
     placeholder: e.g., ami-0c7217cdde317cfec (Amazon Linux / Ubuntu)
     required: true
-
   - name: form_key_name
     type: text
     label: SSH Key Pair Name
     placeholder: e.g., my-aws-key
     required: false
-
   - name: form_root_volume_size
     type: text
     label: Root Volume Size (GiB)
     default: "20"
     placeholder: e.g., 20, 50, 100
     required: true
-
   - name: form_allowed_ssh_cidr
     type: text
     label: Allowed SSH Inbound CIDR
-    default: "0.0.0.0/0"
+    default: 0.0.0.0/0
     placeholder: e.g., 203.0.113.25/32 or 0.0.0.0/0
     required: true
-
   - name: form_assign_public_ip
     type: enum
     label: Auto-Assign Public IPv4
@@ -79,7 +70,6 @@ fields:
       - "false"
     default: "true"
     required: true
-
   - name: form_environment_tag
     type: enum
     label: Environment Tier

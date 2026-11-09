@@ -76,7 +76,7 @@
           'AWS',
           ''
         )
-      valueColumn: 'VpcId'
+      valueColumn: VpcId
       columns:
         - VpcId
         - CidrBlock
@@ -86,14 +86,12 @@
       label: Target Subnet ID
       required: true
       refresh: true
-      # Triggers an AWS DescribeSubnets query filtered by the chosen VPC ID and Region:
-      expression: >
-        fn.fnRestBasic(
-        'GET',
+      expression: |
+        fn.fnRestBasic( 'GET',
         'https://ec2.$(form_region).amazonaws.com/?Action=DescribeSubnets&Filter.1.Name=vpc-id&Filter.1.Value.1=$(form_vpc_id)&Version=2016-11-15',
-        '',
+        '', 
         'AWS',
-        ''
+        '' 
         )
     - name: form_instance_type
       type: enum
@@ -116,14 +114,12 @@
       label: SSH Key Pair Name
       required: true
       refresh: true
-      # Queries EC2 key pairs available in the selected Region:
-      expression: >
-        fn.fnRestBasic(
-        'GET',
+      expression: |
+        fn.fnRestBasic( 'GET',
         'https://ec2.$(form_region).amazonaws.com/?Action=DescribeKeyPairs&Version=2016-11-15',
-        '',
-        'AWS',
-        ''
+        '', 
+        'AWS', 
+        '' 
         )
     - name: form_root_volume_size
       type: text

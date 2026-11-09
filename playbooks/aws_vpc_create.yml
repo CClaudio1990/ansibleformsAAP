@@ -52,6 +52,7 @@
           Name: "{{ form_vpc_name }}-public-rt"
           Environment: "{{ form_environment_tag }}"
 
+    # Output the results of the VPC creation process
     - name: Render Infrastructure Topology Output
       ansible.builtin.debug:
         msg:

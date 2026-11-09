@@ -62,15 +62,37 @@
       default: us-east-1
       required: true
     - name: form_vpc_id
-      type: text
-      label: Target VPC ID
-      placeholder: e.g., vpc-0123456789abcdef0
+      type: enum
+      label: Select VPC ID
       required: true
+      refresh: true
+      expression: >
+        fn.fnRestBasic(
+          'GET',
+          'https://ec2.$(form_region).amazonaws.com/?Action=DescribeVpcs&Version=2016-11-15',
+          '',
+          'AWS',
+          ''
+        )
+      valueColumn: 'VpcId'
+      columns:
+        - VpcId
+        - CidrBlock
+        - Tags.Name
     - name: form_subnet_id
-      type: text
+      type: enum
       label: Target Subnet ID
-      placeholder: e.g., subnet-0123456789abcdef0
       required: true
+      refresh: true
+      # Triggers an AWS DescribeSubnets query filtered by the chosen VPC ID and Region:
+      expression: >
+        fn.fnRestBasic(
+        'GET',
+        'https://ec2.$(form_region).amazonaws.com/?Action=DescribeSubnets&Filter.1.Name=vpc-id&Filter.1.Value.1=$(form_vpc_id)&Version=2016-11-15',
+        '',
+        'aws_api_credential',
+        ''
+        )
     - name: form_instance_type
       type: enum
       label: Instance Type
@@ -88,10 +110,19 @@
       placeholder: e.g., ami-0c7217cdde317cfec (Amazon Linux / Ubuntu)
       required: true
     - name: form_key_name
-      type: text
+      type: enum
       label: SSH Key Pair Name
-      placeholder: e.g., my-aws-key
-      required: false
+      required: true
+      refresh: true
+      # Queries EC2 key pairs available in the selected Region:
+      expression: >
+        fn.fnRestBasic(
+        'GET',
+        'https://ec2.$(form_region).amazonaws.com/?Action=DescribeKeyPairs&Version=2016-11-15',
+        '',
+        'aws_api_credential',
+        ''
+        )
     - name: form_root_volume_size
       type: text
       label: Root Volume Size (GiB)

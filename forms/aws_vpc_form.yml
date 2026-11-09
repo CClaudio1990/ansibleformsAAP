@@ -14,10 +14,11 @@
       type: enum
       label: AWS Region
       values:
+        - Select
         - us-east-1
         - us-west-2
         - eu-west-1
-      default: us-east-1
+      default: Select
       required: true
     - name: form_vpc_cidr
       type: text
@@ -56,10 +57,11 @@
       type: enum
       label: AWS Region
       values:
+        - Select
         - us-east-1
         - us-west-2
         - eu-west-1
-      default: us-east-1
+      default: Select
       required: true
     - name: form_vpc_id
       type: enum

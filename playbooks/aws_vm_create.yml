@@ -1,0 +1,76 @@
+---
+- name: Provision AWS EC2 Compute Infrastructure
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    target_region: "{{ form_region | default('us-east-1') }}"
+
+  tasks:
+    - name: Ensure Security Group Exists for Instance
+      amazon.aws.ec2_security_group:
+        name: "{{ form_instance_name }}-sg"
+        description: "Security group for {{ form_instance_name }}"
+        vpc_id: "{{ form_vpc_id }}"
+        region: "{{ target_region }}"
+        rules:
+          - proto: tcp
+            ports:
+              - 22
+            cidr_ip: "{{ form_allowed_ssh_cidr | default('0.0.0.0/0') }}"
+            rule_desc: "Allow SSH"
+          - proto: tcp
+            ports:
+              - 80
+              - 443
+            cidr_ip: 0.0.0.0/0
+            rule_desc: "Allow HTTP/HTTPS traffic"
+        tags:
+          Name: "{{ form_instance_name }}-sg"
+          Environment: "{{ form_environment_tag }}"
+          ManagedBy: "AnsibleForms"
+      register: sg_result
+
+    - name: Provision EC2 Virtual Machine Instance
+      amazon.aws.ec2_instance:
+        name: "{{ form_instance_name }}"
+        region: "{{ target_region }}"
+        vpc_subnet_id: "{{ form_subnet_id }}"
+        instance_type: "{{ form_instance_type }}"
+        image_id: "{{ form_ami_id }}"
+        key_name: "{{ form_key_name | default(omit) }}"
+        security_groups:
+          - "{{ sg_result.group_id }}"
+        network:
+          assign_public_ip: "{{ form_assign_public_ip | default(true) }}"
+        volumes:
+          - device_name: /dev/xvda
+            ebs:
+              volume_size: "{{ form_root_volume_size | default(20) | int }}"
+              volume_type: gp3
+              delete_on_termination: true
+        tags:
+          Name: "{{ form_instance_name }}"
+          Environment: "{{ form_environment_tag }}"
+          ManagedBy: "AnsibleForms"
+        wait: true
+      register: ec2_result
+
+    - name: Render EC2 Topology Output
+      ansible.builtin.debug:
+        msg:
+          - "========================================="
+          - "    AWS EC2 INSTANCE SUCCESSFULLY BUILT   "
+          - "========================================="
+          - "Instance Name:   {{ form_instance_name }}"
+          - "Instance ID:     {{ ec2_result.instances[0].instance_id }}"
+          - "State:           {{ ec2_result.instances[0].state.name }}"
+          - "Instance Type:   {{ form_instance_type }}"
+          - "Region:          {{ target_region }}"
+          - "Private IP:      {{ ec2_result.instances[0].private_ip_address | default('N/A') }}"
+          - "Public IP:       {{ ec2_result.instances[0].public_ip_address | default('N/A') }}"
+          - "Subnet ID:       {{ form_subnet_id }}"
+          - "Security Group:  {{ sg_result.group_id }}"
+          - "Key Pair:        {{ form_key_name | default('None') }}"
+          - "Environment:     {{ form_environment_tag }}"
+          - "========================================="

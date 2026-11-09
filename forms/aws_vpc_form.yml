@@ -68,6 +68,7 @@
       label: Select VPC ID
       required: true
       refresh: true
+      condition: "fields.form_region != 'Select'"
       expression: >
         fn.fnRestBasic(
           'GET',

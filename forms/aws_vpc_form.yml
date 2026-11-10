@@ -68,11 +68,11 @@
       label: Select VPC ID
       required: true
       refresh: true
-      expression: >
+      expression: |
         if(form_region && form_region != 'Select'){
           fn.fnRestBasic(
             'GET',
-            'https://ec2.$(form_region).amazonaws.com/?Action=DescribeVpcs&Version=2016-11-15',
+            'https://aap-aap.apps.cluster-hjwrh.dyn.redhatworkshops.io/api/v2',
             '',
             'AWS',
             ''
@@ -88,11 +88,11 @@
       label: Target Subnet ID
       required: true
       refresh: true
-      expression: >
+      expression: |
         if(form_region && form_region != 'Select'){
           fn.fnRestBasic(
           'GET',
-          'https://ec2.$(form_region).amazonaws.com/?Action=DescribeSubnets&Filter.1.Name=vpc-id&Filter.1.Value.1=$(form_vpc_id)&Version=2016-11-15',
+          'https://aap-aap.apps.cluster-hjwrh.dyn.redhatworkshops.io/api/v2',
           '', 
           'AWS',
           '' 
@@ -119,11 +119,11 @@
       label: SSH Key Pair Name
       required: true
       refresh: true
-      expression: >
+      expression: |
         if(form_region && form_region != 'Select'){
           fn.fnRestBasic(
           'GET',
-          'https://ec2.$(form_region).amazonaws.com/?Action=DescribeKeyPairs&Version=2016-11-15',
+          'https://aap-aap.apps.cluster-hjwrh.dyn.redhatworkshops.io/api/v2',
           '', 
           'AWS', 
           '' 

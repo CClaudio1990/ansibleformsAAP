@@ -75,7 +75,7 @@
             'https://aap-aap.apps.cluster-hjwrh.dyn.redhatworkshops.io/api/v2/job_templates/',
             '',
             'AAP',
-            ''
+            '.results'
           )
         } else {
           return []
@@ -97,7 +97,7 @@
           'https://aap-aap.apps.cluster-hjwrh.dyn.redhatworkshops.io/api/v2/job_templates/',
           '', 
           'AAP',
-          '' 
+          '.results' 
           )
         } else {
           return []
@@ -130,7 +130,7 @@
           'https://aap-aap.apps.cluster-hjwrh.dyn.redhatworkshops.io/api/v2/job_templates/',
           '', 
           'AAP', 
-          '' 
+          '.results' 
           )
         } else {
           return []

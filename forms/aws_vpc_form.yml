@@ -80,7 +80,7 @@
         } else {
           return []
         }
-      valueColumn: VpcId
+      valueColumn: id
       columns:
         - VpcId
         - CidrBlock

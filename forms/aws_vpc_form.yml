@@ -77,6 +77,8 @@
             'AAP',
             ''
           )
+        } else {
+          []
         }
       valueColumn: VpcId
       columns:
@@ -97,6 +99,8 @@
           'AAP',
           '' 
           )
+        } else {
+          []
         }
     - name: form_instance_type
       type: enum
@@ -128,6 +132,8 @@
           'AAP', 
           '' 
           )
+        } else {
+          []
         }
     - name: form_root_volume_size
       type: text

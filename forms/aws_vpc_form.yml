@@ -68,7 +68,7 @@
       label: Select VPC ID
       required: true
       refresh: true
-      expression: |
+      expression: >
         if(form_region && form_region != 'Select'){
           fn.fnRestBasic(
             'GET',
@@ -78,7 +78,7 @@
             ''
           )
         } else {
-          []
+          return []
         }
       valueColumn: VpcId
       columns:
@@ -90,7 +90,7 @@
       label: Target Subnet ID
       required: true
       refresh: true
-      expression: |
+      expression: >
         if(form_region && form_region != 'Select'){
           fn.fnRestBasic(
           'GET',
@@ -100,7 +100,7 @@
           '' 
           )
         } else {
-          []
+          return []
         }
     - name: form_instance_type
       type: enum
@@ -123,7 +123,7 @@
       label: SSH Key Pair Name
       required: true
       refresh: true
-      expression: |
+      expression: >
         if(form_region && form_region != 'Select'){
           fn.fnRestBasic(
           'GET',
@@ -133,7 +133,7 @@
           '' 
           )
         } else {
-          []
+          return []
         }
     - name: form_root_volume_size
       type: text

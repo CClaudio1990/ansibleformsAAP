@@ -74,7 +74,7 @@
             'GET',
             'https://aap-aap.apps.cluster-hjwrh.dyn.redhatworkshops.io/api/v2',
             '',
-            'AWS',
+            'AAP',
             ''
           )
         }
@@ -94,7 +94,7 @@
           'GET',
           'https://aap-aap.apps.cluster-hjwrh.dyn.redhatworkshops.io/api/v2',
           '', 
-          'AWS',
+          'AAP',
           '' 
           )
         }
@@ -125,7 +125,7 @@
           'GET',
           'https://aap-aap.apps.cluster-hjwrh.dyn.redhatworkshops.io/api/v2',
           '', 
-          'AWS', 
+          'AAP', 
           '' 
           )
         }

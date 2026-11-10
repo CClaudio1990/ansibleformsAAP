@@ -72,9 +72,9 @@
         if(form_region && form_region != 'Select'){
           fn.fnRestBasic(
             'GET',
-            'https://aap-aap.apps.cluster-hjwrh.dyn.redhatworkshops.io/api/v2/job_templates/',
+            'https://ec2.$(form_region).amazonaws.com/?Action=DescribeVpcs&Version=2016-11-15',
             '',
-            'AAP',
+            'AWS',
             '.results'
           )
         } else {
@@ -94,9 +94,9 @@
         if(form_region && form_region != 'Select'){
           fn.fnRestBasic(
           'GET',
-          'https://aap-aap.apps.cluster-hjwrh.dyn.redhatworkshops.io/api/v2/job_templates/',
+          'https://ec2.$(form_region).amazonaws.com/?Action=DescribeVpcs&Version=2016-11-15',
           '', 
-          'AAP',
+          'AWS',
           '.results' 
           )
         } else {
@@ -127,9 +127,9 @@
         if(form_region && form_region != 'Select'){
           fn.fnRestBasic(
           'GET',
-          'https://aap-aap.apps.cluster-hjwrh.dyn.redhatworkshops.io/api/v2/job_templates/',
+          'https://ec2.$(form_region).amazonaws.com/?Action=DescribeKeyPairs&Version=2016-11-15',
           '', 
-          'AAP', 
+          'AWS', 
           '.results' 
           )
         } else {

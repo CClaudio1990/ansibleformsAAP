@@ -28,7 +28,7 @@ fields:
     required: true
     refresh: true
     expression: |-
-      (form_region && form_region != 'Select') ? fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=' + (form_region.value || form_region), '', 'NoAuth', '.') : []
+      (fields.form_region && fields.form_region != 'Select') ? fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=' + (fields.form_region.value || fields.form_region), '', 'NoAuth', '.') : []
     valueColumn: id
     columns: 
       - name
@@ -39,7 +39,7 @@ fields:
     required: true
     refresh: true
     expression: |-
-      (form_region && form_region != 'Select' && form_vpc_id) ? fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=subnets&region=' + (form_region.value || form_region) + '&vpc_id=' + (form_vpc_id.value || form_vpc_id), '', 'NoAuth', '.') : []
+      (fields.form_region && fields.form_region != 'Select' && fields.form_vpc_id) ? fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=subnets&region=' + (fields.form_region.value || fields.form_region) + '&vpc_id=' + (fields.form_vpc_id.value || fields.form_vpc_id), '', 'NoAuth', '.') : []
     valueColumn: id
     columns: 
       - name
@@ -68,7 +68,7 @@ fields:
     required: true
     refresh: true
     expression: |-
-      (form_region && form_region != 'Select') ? fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=keypairs&region=' + (form_region.value || form_region), '', 'NoAuth', '.') : []   
+      (fields.form_region && fields.form_region != 'Select') ? fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=keypairs&region=' + (fields.form_region.value || fields.form_region), '', 'NoAuth', '.') : []   
     valueColumn: id
     columns: 
       - name

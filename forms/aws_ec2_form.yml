@@ -35,7 +35,8 @@ fields:
         return [];
       }
     valueColumn: id
-    displayColumn: name
+    column: 
+      - name
 
   - name: form_subnet_id
     type: enum
@@ -51,7 +52,8 @@ fields:
         return [];
       }
     valueColumn: id
-    displayColumn: name
+    column: 
+      - name
 
   - name: form_instance_type
     type: enum
@@ -84,7 +86,8 @@ fields:
         return [];
       }
     valueColumn: id
-    displayColumn: name
+    column: 
+      - name
 
   - name: form_root_volume_size
     type: text

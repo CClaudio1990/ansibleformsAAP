@@ -28,7 +28,7 @@ fields:
     required: true
     refresh: true
     expression: >-
-      fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=us-west-2', '', 'NoAuth', '.')
+      fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=us-west-2', '', 'AWS', '.')
     valueColumn: id
     columns: 
       - name

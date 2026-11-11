@@ -81,7 +81,7 @@
             '.'
           )
         } else {
-          return []
+          return [];
         }
       valueColumn: id
       displayColumn: name
@@ -103,7 +103,7 @@
           '.' 
           )
         } else {
-          return []
+          return [];
         }
       valueColumn: id
       displayColumn: name
@@ -141,7 +141,7 @@
           '.' 
           )
         } else {
-          return []
+          return [];
         }
     - name: form_root_volume_size
       type: text

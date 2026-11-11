@@ -27,8 +27,8 @@ fields:
     label: Select VPC ID
     required: true
     refresh: true
-    expression: |-
-      (fields.form_region && fields.form_region != 'Select') ? fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=' + (fields.form_region.value || fields.form_region), '', 'NoAuth', '.') : []
+    expression: >-
+      (typeof form_region !== 'undefined' && form_region && (form_region.value || form_region) !== 'Select') ? fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=' + (form_region.value || form_region), '', 'NoAuth', '.') : []
     valueColumn: id
     columns: 
       - name

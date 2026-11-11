@@ -41,6 +41,7 @@
         - Production
       default: Development
       required: true
+
 - name: Create AWS EC2 Instance Test
   description: Provision a standardized AWS EC2 Virtual Machine via AAP / AnsibleForms
   type: aap
@@ -69,17 +70,15 @@
       required: true
       refresh: true
       expression: >
-        var reg = (typeof form_region === 'object' && form_region !== null) 
-            ? (form_region.value || form_region.id || form_region.name) 
-            : form_region;
-        if(form_region && form_region != 'Select'){
-          fn.fnRestBasic(
+        var reg = (typeof form_region === 'object' && form_region !== null) ? (form_region.value || form_region.id || form_region.name) : form_region;
+        if (reg && reg !== 'Select') {
+          return fn.fnRestBasic(
             'GET',
             'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=' + reg,
             '',
             '',
             '.'
-          )
+          );
         } else {
           return [];
         }
@@ -91,17 +90,16 @@
       required: true
       refresh: true
       expression: >
-        var reg = (typeof form_region === 'object' && form_region !== null) 
-            ? (form_region.value || form_region.id || form_region.name) 
-            : form_region;
-        if(form_region && form_region != 'Select'){
-          fn.fnRestBasic(
-          'GET',
-          'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=subnets&region=' + reg,
-          '', 
-          '',
-          '.' 
-          )
+        var reg = (typeof form_region === 'object' && form_region !== null) ? (form_region.value || form_region.id || form_region.name) : form_region;
+        var vpc = (typeof form_vpc_id === 'object' && form_vpc_id !== null) ? (form_vpc_id.value || form_vpc_id.id) : form_vpc_id;
+        if (reg && reg !== 'Select' && vpc) {
+          return fn.fnRestBasic(
+            'GET',
+            'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=subnets&region=' + reg + '&vpc_id=' + vpc,
+            '',
+            '',
+            '.'
+          );
         } else {
           return [];
         }
@@ -129,20 +127,20 @@
       required: true
       refresh: true
       expression: >
-        var reg = (typeof form_region === 'object' && form_region !== null) 
-            ? (form_region.value || form_region.id || form_region.name) 
-            : form_region;
-        if(form_region && form_region != 'Select'){
-          fn.fnRestBasic(
-          'GET',
-          'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=key-pairs&region=' + reg,
-          '', 
-          '', 
-          '.' 
-          )
+        var reg = (typeof form_region === 'object' && form_region !== null) ? (form_region.value || form_region.id || form_region.name) : form_region;
+        if (reg && reg !== 'Select') {
+          return fn.fnRestBasic(
+            'GET',
+            'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=keypairs&region=' + reg,
+            '',
+            '',
+            '.'
+          );
         } else {
           return [];
         }
+      valueColumn: id
+      displayColumn: name
     - name: form_root_volume_size
       type: text
       label: Root Volume Size (GiB)
@@ -172,3 +170,4 @@
         - Production
       default: Development
       required: true
+      

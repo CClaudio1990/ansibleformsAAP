@@ -81,10 +81,7 @@
           return []
         }
       valueColumn: id
-      columns:
-        - VpcId
-        - CidrBlock
-        - Tags.Name
+      displayColumn: name
     - name: form_subnet_id
       type: enum
       label: Target Subnet ID
@@ -102,6 +99,8 @@
         } else {
           return []
         }
+      valueColumn: id
+      displayColumn: name
     - name: form_instance_type
       type: enum
       label: Instance Type
@@ -135,6 +134,8 @@
         } else {
           return []
         }
+      valueColumn: id
+      displayColumn: name
     - name: form_root_volume_size
       type: text
       label: Root Volume Size (GiB)

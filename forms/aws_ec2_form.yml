@@ -30,15 +30,12 @@ fields:
     expression: |-
       var reg = (typeof form_region == 'object' && form_region != null) ? (form_region.value || form_region.id || form_region.name) : form_region;
       if (reg && reg != 'Select') {
-        return fn.fnRestAdvanced(
+        return fn.fnRestBasic(
           'GET',
           'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=' + reg,
-          '',
-          {},
-          '.',
           null,
-          false,
-          false
+          null,
+          '.'
         );
       } else {
         return [];

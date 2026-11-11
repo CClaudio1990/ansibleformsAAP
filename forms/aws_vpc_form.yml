@@ -72,7 +72,7 @@
         if(form_region && form_region != 'Select'){
           fn.fnRestBasic(
             'GET',
-            'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=' + form_region,
+            'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=' + reg,
             '',
             '',
             '.'
@@ -91,7 +91,7 @@
         if(form_region && form_region != 'Select'){
           fn.fnRestBasic(
           'GET',
-          'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=subnets&region=' + form_region,
+          'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=subnets&region=' + reg,
           '', 
           '',
           '.' 
@@ -99,6 +99,8 @@
         } else {
           return []
         }
+      valueColumn: id
+      displayColumn: name
     - name: form_instance_type
       type: enum
       label: Instance Type
@@ -124,7 +126,7 @@
         if(form_region && form_region != 'Select'){
           fn.fnRestBasic(
           'GET',
-          'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=key-pairs&region=' + form_region,
+          'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=key-pairs&region=' + reg,
           '', 
           '', 
           '.' 

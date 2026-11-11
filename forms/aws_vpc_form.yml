@@ -99,8 +99,6 @@
         } else {
           return []
         }
-      valueColumn: id
-      displayColumn: name
     - name: form_instance_type
       type: enum
       label: Instance Type

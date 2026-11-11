@@ -28,8 +28,8 @@ fields:
     required: true
     refresh: true
     expression: |-
-      var reg = (typeof form_region === 'object' && form_region !== null) ? (form_region.value || form_region.id || form_region.name) : form_region;
-      if (reg && reg !== 'Select') {
+      var reg = (typeof form_region == 'object' && form_region != null) ? (form_region.value || form_region.id || form_region.name) : form_region;
+      if (reg && reg != 'Select') {
         return fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=' + reg, '', '', '.');
       } else {
         return [];
@@ -43,8 +43,8 @@ fields:
     required: true
     refresh: true
     expression: |-
-      var reg = (typeof form_region === 'object' && form_region !== null) ? (form_region.value || form_region.id || form_region.name) : form_region;
-      var vpc = (typeof form_vpc_id === 'object' && form_vpc_id !== null) ? (form_vpc_id.value || form_vpc_id.id) : form_vpc_id;
+      var reg = (typeof form_region == 'object' && form_region != null) ? (form_region.value || form_region.id || form_region.name) : form_region;
+      var vpc = (typeof form_vpc_id == 'object' && form_vpc_id != null) ? (form_vpc_id.value || form_vpc_id.id) : form_vpc_id;
       if (reg && reg !== 'Select' && vpc) {
         return fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=subnets&region=' + reg + '&vpc_id=' + vpc, '', '', '.');
       } else {
@@ -77,8 +77,8 @@ fields:
     required: true
     refresh: true
     expression: |-
-      var reg = (typeof form_region === 'object' && form_region !== null) ? (form_region.value || form_region.id || form_region.name) : form_region;
-      if (reg && reg !== 'Select') {
+      var reg = (typeof form_region == 'object' && form_region != null) ? (form_region.value || form_region.id || form_region.name) : form_region;
+      if (reg && reg != 'Select') {
         return fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=keypairs&region=' + reg, '', '', '.');
       } else {
         return [];

@@ -69,6 +69,9 @@
       required: true
       refresh: true
       expression: >
+        var reg = (typeof form_region === 'object' && form_region !== null) 
+            ? (form_region.value || form_region.id || form_region.name) 
+            : form_region;
         if(form_region && form_region != 'Select'){
           fn.fnRestBasic(
             'GET',
@@ -88,6 +91,9 @@
       required: true
       refresh: true
       expression: >
+        var reg = (typeof form_region === 'object' && form_region !== null) 
+            ? (form_region.value || form_region.id || form_region.name) 
+            : form_region;
         if(form_region && form_region != 'Select'){
           fn.fnRestBasic(
           'GET',
@@ -123,6 +129,9 @@
       required: true
       refresh: true
       expression: >
+        var reg = (typeof form_region === 'object' && form_region !== null) 
+            ? (form_region.value || form_region.id || form_region.name) 
+            : form_region;
         if(form_region && form_region != 'Select'){
           fn.fnRestBasic(
           'GET',

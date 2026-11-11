@@ -28,7 +28,7 @@ fields:
     required: true
     refresh: true
     expression: >-
-      (typeof form_region !== 'undefined' && form_region && (form_region.value || form_region) !== 'Select') ? fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=' + (form_region.value || form_region), '', 'AWS', '.') : []
+      (typeof form_region !== 'undefined' && form_region && (form_region.value || form_region) !== 'Select') ? fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=' + (form_region.value || form_region), '', 'NoAuth', '.') : []
     valueColumn: id
     columns:
       - name
@@ -39,7 +39,7 @@ fields:
     required: true
     refresh: true
     expression: >-
-      (typeof form_region !== 'undefined' && form_region && (form_region.value || form_region) !== 'Select' && typeof form_vpc_id !== 'undefined' && form_vpc_id) ? fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=subnets&region=' + (form_region.value || form_region) + '&vpc_id=' + (form_vpc_id.value || form_vpc_id), '', 'AWS', '.') : []
+      (typeof form_region !== 'undefined' && form_region && (form_region.value || form_region) !== 'Select' && typeof form_vpc_id !== 'undefined' && form_vpc_id) ? fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=subnets&region=' + (form_region.value || form_region) + '&vpc_id=' + (form_vpc_id.value || form_vpc_id), '', 'NoAuth', '.') : []
     valueColumn: id
     columns:
       - name
@@ -68,7 +68,7 @@ fields:
     required: true
     refresh: true
     expression: >-
-      (typeof form_region !== 'undefined' && form_region && (form_region.value || form_region) !== 'Select') ? fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=keypairs&region=' + (form_region.value || form_region), '', 'AWS', '.') : []
+      (typeof form_region !== 'undefined' && form_region && (form_region.value || form_region) !== 'Select') ? fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=keypairs&region=' + (form_region.value || form_region), '', 'NoAuth', '.') : []
     valueColumn: id
     columns:
       - name

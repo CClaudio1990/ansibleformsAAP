@@ -72,7 +72,7 @@
         if(form_region && form_region != 'Select'){
           fn.fnRestBasic(
             'GET',
-            'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=us-west-2',
+            'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=' + form_region,
             '',
             '',
             '.'
@@ -91,7 +91,7 @@
         if(form_region && form_region != 'Select'){
           fn.fnRestBasic(
           'GET',
-          'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=subnets&region=us-west-2',
+          'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=subnets&region=' + form_region,
           '', 
           '',
           '.' 
@@ -126,7 +126,7 @@
         if(form_region && form_region != 'Select'){
           fn.fnRestBasic(
           'GET',
-          'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=key-pairs&region=us-west-2',
+          'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=key-pairs&region=' + form_region,
           '', 
           '', 
           '.' 
@@ -134,8 +134,6 @@
         } else {
           return []
         }
-      valueColumn: id
-      displayColumn: name
     - name: form_root_volume_size
       type: text
       label: Root Volume Size (GiB)

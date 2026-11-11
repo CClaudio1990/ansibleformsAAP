@@ -28,7 +28,7 @@ fields:
     required: true
     refresh: true
     expression: >-
-      (typeof form_region !== 'undefined' && form_region && (form_region.value || form_region) !== 'Select') ? fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=' + (form_region.value || form_region), '', 'NoAuth', '.') : []
+      fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=us-west-2', '', 'NoAuth', '.')
     valueColumn: id
     columns:
       - name

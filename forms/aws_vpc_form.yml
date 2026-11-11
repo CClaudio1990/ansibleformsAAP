@@ -72,7 +72,7 @@
         if(form_region && form_region != 'Select'){
           fn.fnRestBasic(
             'GET',
-            'https://ec2.' + form_region + '.amazonaws.com/?Action=DescribeVpcs&Version=2016-11-15',
+            'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/',
             '',
             'AWS',
             '.results'
@@ -94,7 +94,7 @@
         if(form_region && form_region != 'Select'){
           fn.fnRestBasic(
           'GET',
-          'https://ec2.' + form_region + '.amazonaws.com/?Action=DescribeVpcs&Version=2016-11-15',
+          'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/',
           '', 
           'AWS',
           '.results' 
@@ -127,7 +127,7 @@
         if(form_region && form_region != 'Select'){
           fn.fnRestBasic(
           'GET',
-          'https://ec2.' + form_region + '.amazonaws.com/?Action=DescribeKeyPairs&Version=2016-11-15',
+          'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/',
           '', 
           'AWS', 
           '.results' 

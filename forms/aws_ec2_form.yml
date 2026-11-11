@@ -27,8 +27,6 @@ fields:
     label: Select VPC ID
     required: true
     refresh: true
-    dependsOn:
-      - form_region
     expression: >-
       (typeof form_region !== 'undefined' && form_region && ((typeof form_region === 'object' ? (form_region.value || form_region.id) : form_region) !== 'Select')) ? fn.fnRestBasic('GET', 'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=' + (form_region.value || form_region.id || form_region), '', 'AWS', '.') : []
     valueColumn: id

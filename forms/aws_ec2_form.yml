@@ -30,7 +30,7 @@ fields:
     expression: >-
       fn.fnRestAdvanced(
       'get',
-      'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=us-east-1',
+      'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=$(form_region)',
       '',
       {},
       '.'

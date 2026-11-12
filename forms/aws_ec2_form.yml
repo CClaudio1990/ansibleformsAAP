@@ -28,15 +28,13 @@ fields:
     required: true
     refresh: true
     expression: >-
-      $(form_region) !== 'Select'
-      ? fn.fnRestBasic(
-        'GET',
-        'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=$(form_region)',
-        '',
-        'NoAuth',
-        '.'
+      fn.fnRestAdvanced(
+      'get',
+      'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=vpcs&region=us-east-1',
+      '',
+      {},
+      '.'
       )
-      : []
     valueColumn: id
     columns:
       - name

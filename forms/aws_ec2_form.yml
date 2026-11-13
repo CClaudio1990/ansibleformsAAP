@@ -55,48 +55,6 @@ fields:
     columns:
       - name
 
-  - name: form_sg_mode
-    type: enum
-    label: Security Group Option
-    values:
-      - Select Existing
-      - Create New
-    default: Select Existing
-    required: true
-
-  - name: form_security_group_id
-    type: enum
-    label: Existing Security Group
-    required: true
-    refresh: true
-    hide: $(form_sg_mode) != 'Select Existing'
-    expression: >-
-      fn.fnRestAdvanced(
-      'get',
-      'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=securitygroups&region=$(form_region)&vpc_id=$(form_vpc_id)',
-      '',
-      {},
-      '.'
-      )
-    valueColumn: id
-    columns:
-      - name
-
-  - name: form_new_sg_name
-    type: text
-    label: New Security Group Name
-    placeholder: e.g., web-app-sg
-    required: true
-    hide: $(form_sg_mode) != 'Create New'
-
-  - name: form_new_sg_description
-    type: text
-    label: New Security Group Description
-    default: Managed by Ansible
-    placeholder: e.g., Allow SSH and HTTP traffic
-    required: true
-    hide: $(form_sg_mode) != 'Create New'
-
   - name: form_instance_type
     type: enum
     label: Instance Type
@@ -110,10 +68,27 @@ fields:
     required: true
 
   - name: form_ami_id
-    type: text
-    label: AMI ID
-    placeholder: e.g., ami-0c7217cdde317cfec (Amazon Linux / Ubuntu)
+    type: enum
+    label: Select AMI
     required: true
+    refresh: true
+    expression: >-
+      '$(form_region)' !== 'Select' &&
+      '$(form_region)' !== ''
+      ? fn.fnRestAdvanced(
+        'get',
+        'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=amis&region=$(form_region)',
+        '',
+        {},
+        '.'
+      )
+      : []
+    valueColumn: id
+    columns:
+      - name
+      - architecture
+      - platform
+      - creationDate
 
   - name: form_key_name
     type: enum

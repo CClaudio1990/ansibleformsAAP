@@ -35,7 +35,7 @@
       ansible.builtin.set_fact:
         vm_volumes: >-
           {{
-            vm_volumes + [
+            (vm_volumes | default([])) + [
               {
                 'ebs': {
                   'volume_size': (lookup('vars', 'form_drive_' ~ item ~ '_size') | default(10) | int),

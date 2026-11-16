@@ -139,7 +139,7 @@ fields:
   - name: form_drive_1_size
     type: number
     label: Drive 1 Size (GiB)
-    default: 0
+    default: 10
     minValue: 1
     dependencies:
       - name: form_add_drive
@@ -157,7 +157,7 @@ fields:
   - name: form_drive_2_size
     type: number
     label: Drive 2 Size (GiB)
-    default: 0
+    default: 10
     minValue: 1
     dependencies:
       - name: form_add_drive
@@ -175,7 +175,7 @@ fields:
   - name: form_drive_3_size
     type: number
     label: Drive 3 Size (GiB)
-    default: 0
+    default: 10
     minValue: 1
     dependencies:
       - name: form_add_drive

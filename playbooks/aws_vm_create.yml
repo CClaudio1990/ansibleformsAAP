@@ -37,13 +37,12 @@
           {{
             vm_volumes + [
               {
-                'device_name': lookup('vars', 'form_drive_' ~item~ '_name'),
                 'ebs': {
-                  'volume_size': lookup('vars', 'form_drive_' ~ item ~ '_size') | default(50) | int,
+                  'volume_size': lookup('vars', 'form_drive_' ~ item ~ '_size') | default(10) | int,
                   'volume_type': 'gp3',
                   'delete_on_termination': true,
                   'tags': {
-                    'Name': form_instance_name ~ '-' ~ (lookup('vars', 'form_drive_' ~ item ~ '_name', default='drive' ~ item) or ('drive' ~ item)),
+                    'Name': form_instance_name ~ '-' ~ (lookup('vars', 'form_drive_' ~ item ~ '_name'),
                     'Environment': form_environment_tag,
                     'ManagedBy': 'AnsibleForms'
                   }

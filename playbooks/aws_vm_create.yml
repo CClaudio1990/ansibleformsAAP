@@ -31,6 +31,29 @@
           ManagedBy: "AnsibleForms"
       register: sg_result
 
+    - name: Append Additional EBS Volumes
+      ansible.builtin.set_fact:
+        vm_volumes: >-
+          {{
+            vm_volumes + [
+              {
+                'device_name': '/dev/xvd' ~ drive_letters[item - 1],
+                'ebs': {
+                  'volume_size': lookup('vars', 'form_drive_' ~ item ~ '_size') | default(50) | int,
+                  'volume_type': 'gp3',
+                  'delete_on_termination': true,
+                  'tags': {
+                    'Name': form_instance_name ~ '-' ~ (lookup('vars', 'form_drive_' ~ item ~ '_name', default='drive' ~ item) or ('drive' ~ item)),
+                    'Environment': form_environment_tag,
+                    'ManagedBy': 'AnsibleForms'
+                  }
+                }
+              }
+            ]
+          }}
+      loop: "{{ range(1, (form_add_drive | default(0) | int) + 1) | list }}"
+      when: (form_add_drive | default(0) | int) > 0
+
     - name: Provision EC2 Virtual Machine Instance
       amazon.aws.ec2_instance:
         name: "{{ form_instance_name }}"

@@ -119,6 +119,67 @@ fields:
     default: "20"
     placeholder: e.g., 20, 50, 100
     required: true
+
+  - name: form_add_drive
+    type: number
+    label: Add New Drives
+    default: 0
+    minValue: 0
+    maxValue: 3
+
+# --- Drive 1 (/dev/xvdb) ---
+  - name: form_drive_1_name
+    type: text
+    label: Drive 1 Name (xvdb)
+    placeholder: e.g., data
+    dependencies:
+      - name: form_add_drive
+        values: [1, 2, 3]
+
+  - name: form_drive_1_size
+    type: number
+    label: Drive 1 Size (GiB)
+    default: 50
+    minValue: 1
+    dependencies:
+      - name: form_add_drive
+        values: [1, 2, 3]
+
+  # --- Drive 2 (/dev/xvdc) ---
+  - name: form_drive_2_name
+    type: text
+    label: Drive 2 Name (xvdc)
+    placeholder: e.g., logs
+    dependencies:
+      - name: form_add_drive
+        values: [2, 3]
+
+  - name: form_drive_2_size
+    type: number
+    label: Drive 2 Size (GiB)
+    default: 50
+    minValue: 1
+    dependencies:
+      - name: form_add_drive
+        values: [2, 3]
+
+  # --- Drive 3 (/dev/xvdd) ---
+  - name: form_drive_3_name
+    type: text
+    label: Drive 3 Name (xvdd)
+    placeholder: e.g., backup
+    dependencies:
+      - name: form_add_drive
+        values: [3]
+
+  - name: form_drive_3_size
+    type: number
+    label: Drive 3 Size (GiB)
+    default: 50
+    minValue: 1
+    dependencies:
+      - name: form_add_drive
+        values: [3]
   
   - name: form_allowed_ssh_cidr
     type: text

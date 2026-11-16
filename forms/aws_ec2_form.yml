@@ -81,6 +81,8 @@ fields:
       - label: RHEL 10
         owner: '309956199498'
         search: RHEL-10.*_HVM-*-x86_64-*
+    columns:
+      - name
 
   - name: form_ami_id
     type: enum

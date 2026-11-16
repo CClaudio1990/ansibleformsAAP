@@ -72,10 +72,9 @@ fields:
     label: Operating System
     required: true
     values:
-      -Amazon Linux 2023
-      -RHEL 9
-      -RHEL 10
-    default: Amazon Linux 2023
+      - Amazon Linux 2023
+      - RHEL 9
+      - RHEL 10
 
   - name: form_ami_id
     type: enum
@@ -85,15 +84,10 @@ fields:
     expression: >-
       '$(form_region)' !== 'Select' &&
       '$(form_region)' !== '' &&
-      '$(form_os)' !== ''
+      '$(form_os.search)' !== ''
       ? fn.fnRestAdvanced(
         'get',
-        'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=amis&region=$(form_region)' +
-        ('$(form_os)' === 'RHEL 9'
-          ? '&owner=309956199498&search=RHEL-9.*_HVM-*-x86_64-*'
-          : '$(form_os)' === 'RHEL 10'
-            ? '&owner=309956199498&search=RHEL-10.*_HVM-*-x86_64-*'
-            : '&owner=amazon&search=al2023-ami-2023*-x86_64'),
+        'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=amis&region=$(form_region)',
         '',
         {},
         '.'

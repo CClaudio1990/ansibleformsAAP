@@ -87,8 +87,7 @@ fields:
     columns:
       - name
       - architecture
-      - platform
-      - creationDate
+      - description
 
   - name: form_key_name
     type: enum

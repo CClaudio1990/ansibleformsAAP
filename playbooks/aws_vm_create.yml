@@ -33,9 +33,9 @@
 
     - name: Append Additional EBS Volumes
       ansible.builtin.set_fact:
-      vm_volumes: >-
-        {{
-          (vm_volumes | default([])) + [
+        vm_volumes: >-
+          {{
+            (vm_volumes | default([])) + [
             {
               'device_name': '/dev/sd' ~ ['f','g','h','i','j','k','l','m','n','o','p'][item - 1],
               'ebs': {
@@ -50,7 +50,7 @@
               }
             }
           ]
-        }}
+          }}
       loop: "{{ range(1, (form_add_drive | default(0) | int) + 1) | list }}"
       when: (form_add_drive | default(0) | int > 0)
 

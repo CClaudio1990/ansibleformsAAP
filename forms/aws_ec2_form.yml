@@ -127,10 +127,10 @@ fields:
     minValue: 0
     maxValue: 3
 
-# --- Drive 1 (/dev/xvdb) ---
+# --- Drive 1 ---
   - name: form_drive_1_name
     type: text
-    label: Drive 1 Name (xvdb)
+    label: Drive 1 Name
     placeholder: e.g., data
     dependencies:
       - name: form_add_drive
@@ -139,16 +139,16 @@ fields:
   - name: form_drive_1_size
     type: number
     label: Drive 1 Size (GiB)
-    default: 50
+    default: 0
     minValue: 1
     dependencies:
       - name: form_add_drive
         values: [1, 2, 3]
 
-  # --- Drive 2 (/dev/xvdc) ---
+  # --- Drive 2 ---
   - name: form_drive_2_name
     type: text
-    label: Drive 2 Name (xvdc)
+    label: Drive 2 Name
     placeholder: e.g., logs
     dependencies:
       - name: form_add_drive
@@ -157,16 +157,16 @@ fields:
   - name: form_drive_2_size
     type: number
     label: Drive 2 Size (GiB)
-    default: 50
+    default: 0
     minValue: 1
     dependencies:
       - name: form_add_drive
         values: [2, 3]
 
-  # --- Drive 3 (/dev/xvdd) ---
+  # --- Drive 3 ---
   - name: form_drive_3_name
     type: text
-    label: Drive 3 Name (xvdd)
+    label: Drive 3 Name
     placeholder: e.g., backup
     dependencies:
       - name: form_add_drive
@@ -175,7 +175,7 @@ fields:
   - name: form_drive_3_size
     type: number
     label: Drive 3 Size (GiB)
-    default: 50
+    default: 0
     minValue: 1
     dependencies:
       - name: form_add_drive

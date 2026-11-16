@@ -75,6 +75,7 @@ fields:
       - Amazon Linux 2023
       - RHEL 9
       - RHEL 10
+    default: Amazon Linux 2023
 
   - name: form_ami_id
     type: enum
@@ -87,7 +88,7 @@ fields:
       '$(form_os.search)' !== ''
       ? fn.fnRestAdvanced(
         'get',
-        'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=amis&region=$(form_region)',
+        'https://nsdb4l531k.execute-api.us-west-2.amazonaws.com/aws-metadata?action=amis&region=$(form_region)&os=$(form_os)',
         '',
         {},
         '.'

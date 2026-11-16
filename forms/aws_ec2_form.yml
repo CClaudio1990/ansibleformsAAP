@@ -101,6 +101,7 @@ fields:
       : []
     valueColumn: id
     columns:
+      - id
       - name
       - architecture
       - description

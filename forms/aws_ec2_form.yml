@@ -119,33 +119,6 @@ fields:
     default: "20"
     placeholder: e.g., 20, 50, 100
     required: true
-
-  - name: form_additional_volumes
-    type: table
-    label: Additional Volumes (Optional)
-    required: false
-    tableFields:
-      - name: volume_name
-        type: text
-        label: Volume Name
-        placeholder: e.g., data, logs, backup
-        required: true
-      - name: device_name
-        type: enum
-        label: Device
-        values:
-          - /dev/xvdb
-          - /dev/xvdc
-          - /dev/xvdd
-          - /dev/xvde
-        default: /dev/xvdb
-        required: true
-      - name: volume_size
-        type: text
-        label: Size (GiB)
-        default: "50"
-        placeholder: e.g., 50, 100
-        required: true
   
   - name: form_allowed_ssh_cidr
     type: text

@@ -33,23 +33,25 @@
 
     - name: Append Additional EBS Volumes
       ansible.builtin.set_fact:
-        vm_volumes: >-
-          {{
-            (vm_volumes | default([])) + [
-              {
-                'ebs': {
-                  'volume_size': (lookup('vars', 'form_drive_' ~ item ~ '_size') | default(10) | int),
-                  'volume_type': 'gp3',
-                  'delete_on_termination': true,
-                  'tags': {
-                    'Name': form_instance_name ~ '-' ~ lookup('vars', 'form_drive_' ~ item ~ '_name'),
-                    'Environment': form_environment_tag,
-                    'ManagedBy': 'AnsibleForms'
+      vm_volumes: >-
+        {{
+          (vm_volumes | default([])) + [
+            {
+              'device_name': '/dev/sd' ~ ['f','g','h','i','j','k','l','m','n','o','p'][item - 1],
+              'ebs': {
+                'volume_size': (vars['form_drive_' ~ item ~ '_size'] | default(10) | int),
+                'volume_type': 'gp3',
+                'delete_on_termination': true,
+                'tags': {
+                  'Name': form_instance_name ~ '-' ~ (vars['form_drive_' ~ item ~ '_name'] | default('data' ~ item)),
+                  'Environment': form_environment_tag,
+                  'ManagedBy': 'AnsibleForms'
                   }
                 }
               }
-            ]
-          }}
+            }
+          ]
+        }}
       loop: "{{ range(1, (form_add_drive | default(0) | int) + 1) | list }}"
       when: (form_add_drive | default(0) | int) > 0
 

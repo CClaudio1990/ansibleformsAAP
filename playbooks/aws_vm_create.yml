@@ -35,16 +35,16 @@
       amazon.aws.ec2_instance:
         name: "{{ form_instance_name }}"
         region: "{{ target_region }}"
-        vpc_subnet_id: "{{ form_subnet_id }}"
         instance_type: "{{ form_instance_type }}"
         image_id: "{{ form_ami_id }}"
         key_name: "{{ form_key_name | default(omit) }}"
-        security_groups:
-          - "{{ sg_result.group_id }}"
-        network:
-          assign_public_ip: "{{ form_assign_public_ip | default(true) }}"
+        network_interfaces:
+          - assign_public_ip: "{{ form_assign_public_ip | default(true) | bool }}"
+            subnet_id: "{{ form_subnet_id }}"
+            groups:
+              - "{{ sg_result.group_id }}"
         volumes:
-          - device_name: /dev/xvda
+          - device_name: "{{ '/dev/sda1' if 'RHEL' in form_os else '/dev/xvda' }}"
             ebs:
               volume_size: "{{ form_root_volume_size | default(20) | int }}"
               volume_type: gp3

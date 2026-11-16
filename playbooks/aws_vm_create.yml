@@ -52,7 +52,7 @@
           ]
           }}
       loop: "{{ range(1, (form_add_drive | default(0) | int) + 1) | list }}"
-      when: (form_add_drive | default(0) | int > 0)
+      when: (form_add_drive | default(0) | int) > 0
 
     - name: Provision EC2 Virtual Machine Instance
       amazon.aws.ec2_instance:

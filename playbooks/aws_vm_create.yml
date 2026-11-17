@@ -67,12 +67,19 @@
             subnet_id: "{{ form_subnet_id }}"
             groups:
               - "{{ sg_result.group_id }}"
-        volumes:
-          - device_name: "{{ '/dev/sda1' if 'RHEL' in form_os else '/dev/xvda' }}"
-            ebs:
-              volume_size: "{{ form_root_volume_size | default(20) | int }}"
-              volume_type: gp3
-              delete_on_termination: true
+        volumes: >-
+          {{
+            [
+              {
+                'device_name': '/dev/sda1' if 'RHEL' in form_os else '/dev/xvda',
+                'ebs': {
+                  'volume_size': (form_root_volume_size | default(20) | int),
+                  'volume_type': 'gp3',
+                  'delete_on_termination': true
+                }
+              }
+            ] + (vm_volumes | default([]))
+          }}
         tags:
           Name: "{{ form_instance_name }}"
           Environment: "{{ form_environment_tag }}"

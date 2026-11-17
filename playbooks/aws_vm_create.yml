@@ -80,11 +80,6 @@
               }
             ] + (vm_volumes | default([]))
           }}
-        ##tags:
-          ##Name: "{{ form_instance_name }}"
-          ##Environment: "{{ form_environment_tag }}"
-          ##ManagedBy: "AnsibleForms"
-        ##wait: true
       register: ec2_result
 
     - name: Tag Additional EBS Volumes

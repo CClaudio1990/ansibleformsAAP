@@ -108,4 +108,5 @@
           - "Security Group:  {{ sg_result.group_id }}"
           - "Key Pair:        {{ form_key_name | default('None') }}"
           - "Environment:     {{ form_environment_tag }}"
+          - "Extra Volumes:   {{ (form_add_drive | default(0) | int) }}"
           - "========================================="

@@ -80,12 +80,26 @@
               }
             ] + (vm_volumes | default([]))
           }}
+        ##tags:
+          ##Name: "{{ form_instance_name }}"
+          ##Environment: "{{ form_environment_tag }}"
+          ##ManagedBy: "AnsibleForms"
+        ##wait: true
+      register: ec2_result
+
+    - name: Tag Additional EBS Volumes
+      amazon.aws.ec2_tag:
+        region: "{{ target_region }}"
+        resource: "{{ item.ebs.volume_id }}"
+        state: present
         tags:
-          Name: "{{ form_instance_name }}"
+          Name: "{{ form_instance_name }}-{{ vars['form_drive_' ~ (idx + 1) ~ '_name'] | default('drive' ~ (idx + 1)) }}"
           Environment: "{{ form_environment_tag }}"
           ManagedBy: "AnsibleForms"
-        wait: true
-      register: ec2_result
+      loop: "{{ ec2_result.instances[0].block_device_mappings | rejectattr('device_name', 'in', ['/dev/sda1', '/dev/xvda']) | list }}"
+      loop_control:
+        index_var: idx
+      when: (form_add_drive | default(0) | int) > 0      
 
     - name: Render EC2 Topology Output
       ansible.builtin.debug:

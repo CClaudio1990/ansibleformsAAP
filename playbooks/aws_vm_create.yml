@@ -109,4 +109,5 @@
           - "Key Pair:        {{ form_key_name | default('None') }}"
           - "Environment:     {{ form_environment_tag }}"
           - "Extra Volumes:   {{ (form_add_drive | default(0) | int) }}"
+          - "Volume Names:    {{ ec2_result.instances[0].block_device_mappings | default([]) | map(attribute='device_name') | list | join(', ') OR 'None' }}"
           - "========================================="

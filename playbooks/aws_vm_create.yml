@@ -109,5 +109,5 @@
           - "Key Pair:        {{ form_key_name | default('None') }}"
           - "Environment:     {{ form_environment_tag }}"
           - "Extra Volumes:   {{ (form_add_drive | default(0) | int) }}"
-          - "Volume Names:    {{ (tag_volumes_result.results | default([]) | map('extract', {'fmt': ''}) if false else '') }}{% set vol_list = [] %}{% for r in (tag_volumes_result.results | default([])) if not r.skipped | default(false) %}{% set _ = vol_list.append((vars['form_drive_' ~ loop.index ~ '_name'] | default('drive' ~ loop.index)) ~ ' (' ~ r.item.device_name ~ ')') %}{% endfor %}{{ (vol_list | join(', ')) or 'None' }}"
+          - "Volume Names:    {{ (ec2_result.instances[0].block_device_mappings | default([]) | rejectattr('device_name', 'in', ['/dev/sda1', '/dev/xvda']) | map(attribute='device_name') | list | join(', ')) or 'None' }}"
           - "========================================="
